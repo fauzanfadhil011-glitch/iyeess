@@ -1,0 +1,1128 @@
+:root {
+  --top-bg: #dee1e6;
+  --body-bg: #cbd5e1;
+  --panel-bg: #ffffff;
+  --soft-bg: #f1f5f9;
+  --border: #d9e1eb;
+  --border-dark: #b8c6d7;
+  --text: #061125;
+  --muted: #738198;
+  --blue: #1f3f98;
+  --purple: #7d31e8;
+  --disabled: #d5dce3;
+  --paper-width: clamp(520px, 48vw, 660px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--body-bg);
+  font-size: 12px;
+  scroll-behavior: smooth;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.app-shell {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.top-tabs {
+  height: 32px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 0 11px;
+  background: var(--top-bg);
+}
+
+.tab-link {
+  position: relative;
+  height: 30px;
+  min-width: 112px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 17px;
+  color: #4a5568;
+  text-decoration: none;
+  border-radius: 10px 10px 0 0;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.tab-link.active {
+  background: #ffffff;
+  color: #061125;
+  font-weight: 700;
+}
+
+.tab-link.active::before,
+.tab-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.tab-link.active::before {
+  left: -10px;
+  background: radial-gradient(
+    circle at top left,
+    transparent 10px,
+    #ffffff 10px
+  );
+}
+
+.tab-link.active::after {
+  right: -10px;
+  background: radial-gradient(
+    circle at top right,
+    transparent 10px,
+    #ffffff 10px
+  );
+}
+
+.tab-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.address-bar {
+  height: 33px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 10px;
+  border-bottom: 1px solid #e7ebf1;
+  background: #ffffff;
+}
+
+.brand {
+  color: #0000c9;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: -0.2px;
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding-left: 8px;
+}
+
+.fake-url {
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  color: #4b5563;
+  background: #f1f2f4;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace {
+  height: calc(100vh - 65px);
+  display: flex;
+  background: var(--body-bg);
+}
+
+.side-panel {
+  width: clamp(320px, 30vw, 380px);
+  min-width: 300px;
+  max-width: 380px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: var(--panel-bg);
+  border-right: 1px solid #d6dde7;
+}
+
+.side-panel::-webkit-scrollbar {
+  width: 12px;
+}
+
+.side-panel::-webkit-scrollbar-thumb {
+  background: #b6bbc4;
+  border-radius: 8px;
+  border: 3px solid #eef1f5;
+}
+
+.side-panel::-webkit-scrollbar-track {
+  background: #eef1f5;
+}
+
+.panel-inner {
+  padding: 27px 19px 36px;
+}
+
+.form-title {
+  position: relative;
+  margin: 0 0 26px;
+  padding-left: 15px;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.45px;
+}
+
+.form-title::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 5px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--blue);
+}
+
+.form-section {
+  margin-bottom: 26px;
+}
+
+.form-section h2 {
+  margin: 0 0 13px;
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+label {
+  display: block;
+  margin: 0 0 6px;
+  color: #071326;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.field {
+  width: 100%;
+  height: 38px;
+  margin: 0 0 14px;
+  padding: 0 14px;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #cbd6e2;
+  border-radius: 6px;
+  outline: none;
+  font-size: 12px;
+}
+
+.field:focus {
+  border-color: #9fb6d5;
+  box-shadow: 0 0 0 3px rgba(31, 63, 152, 0.08);
+}
+
+select.field {
+  padding-right: 26px;
+  font-weight: 700;
+}
+
+textarea.field {
+  display: block;
+  resize: vertical;
+  min-height: 48px;
+  padding-top: 10px;
+  line-height: 1.3;
+}
+
+.textarea-xs {
+  height: 52px;
+}
+
+.textarea-sm {
+  height: 56px;
+}
+
+.textarea-md {
+  height: 72px;
+}
+
+.textarea-lg {
+  height: 88px;
+}
+
+.compact-section {
+  margin-top: -6px;
+}
+
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.dynamic-box {
+  padding: 11px 8px;
+  margin-bottom: 13px;
+  background: var(--soft-bg);
+  border-radius: 7px;
+}
+
+.item-row {
+  display: grid;
+  gap: 7px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.item-row:last-child {
+  margin-bottom: 0;
+}
+
+.expense-row {
+  grid-template-columns: minmax(0, 1.5fr) 72px minmax(0, 0.9fr) 18px;
+}
+
+.pr-row {
+  grid-template-columns: minmax(0, 1.2fr) 36px minmax(0, 1fr) 18px;
+}
+
+.item-row .field {
+  height: 38px;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.item-row .field.item-qty,
+.item-row input[type="number"].item-qty {
+  padding: 0 6px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.row-remove {
+  display: none;
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+  background: #e54b4b;
+  border-radius: 50%;
+  line-height: 18px;
+  font-size: 15px;
+}
+
+.item-row.can-remove .row-remove {
+  display: block;
+}
+
+.add-row {
+  width: 100%;
+  height: 33px;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px dashed #c8d3e1;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.check-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+}
+
+.check-grid label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.check-grid input {
+  width: 11px;
+  height: 11px;
+  margin: 0;
+}
+
+.final-section {
+  margin-bottom: 8px;
+}
+
+.final-box {
+  padding: 15px 16px 20px;
+  background: #f8fafc;
+  border: 1px solid #d3dee9;
+  border-radius: 9px;
+}
+
+.slot-btn {
+  width: 100%;
+  height: 31px;
+  display: block;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 9px 20px rgba(30, 64, 175, 0.16);
+}
+
+.slot-main {
+  background: var(--blue);
+}
+
+.final-box p {
+  margin: 13px 0 0;
+  color: #64748b;
+  text-align: center;
+  font-size: 9px;
+}
+
+.reset-btn,
+.print-btn {
+  width: 100%;
+  height: 36px;
+  margin-top: 15px;
+  color: #99a4b0;
+  background: #dce2e8;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.15px;
+  box-shadow: 0 12px 18px rgba(20, 40, 70, 0.12);
+}
+
+.reset-btn {
+  border: 1px solid #f59e0b;
+}
+
+.reset-btn:not(:disabled),
+.print-btn:not(:disabled) {
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.reset-btn:not(:disabled) {
+  background: #f8fafc;
+}
+
+.print-btn:not(:disabled) {
+  background: #ffffff;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.95;
+}
+
+.preview-area {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 27px 28px 60px;
+  background: var(--body-bg);
+}
+
+.doc-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+}
+
+.paper {
+  width: var(--paper-width);
+  min-height: calc(var(--paper-width) * 1.414);
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16);
+  border: 1px dashed var(--border-dark);
+  flex-shrink: 0;
+}
+
+.paper-slot {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  background: #f8fafc;
+  container-type: inline-size;
+  container-name: paper;
+}
+
+/* Kosong: tampil penuh 1 halaman A4 dengan teks placeholder di tengah */
+.paper-slot.empty {
+  flex: 1;
+  min-height: calc(var(--paper-width) * 1.414);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Terisi: tinggi mengikuti isi dokumen per halaman (sudah dibatasi 1 A4 oleh JS) */
+.paper-slot:not(.empty) {
+  flex: none;
+}
+
+.paper-slot.empty span {
+  color: #91a0ba;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 6px;
+}
+
+.doc-card {
+  width: 100%;
+  height: 100%;
+  padding: 21px 24px 18px;
+  color: #111827;
+  background: #ffffff;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.doc-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 7px;
+  margin-bottom: 9px;
+  border-bottom: 2px solid #1e3a8a;
+}
+
+.doc-brand {
+  font-size: 14px;
+  font-weight: 900;
+  color: #0000c9;
+}
+
+.doc-title {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.doc-meta {
+  display: grid;
+  grid-template-columns: 95px 1fr 95px 1fr;
+  gap: 5px 8px;
+  margin-bottom: 9px;
+}
+
+.doc-label {
+  color: #64748b;
+  font-weight: 800;
+}
+
+.doc-value {
+  min-height: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid #dbe3ee;
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+}
+
+.doc-table th,
+.doc-table td {
+  border: 1px solid #cfd8e6;
+  padding: 5px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.doc-table th {
+  background: #eaf0f7;
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.doc-note {
+  min-height: 58px;
+  padding: 8px;
+  border: 1px solid #cfd8e6;
+  white-space: pre-wrap;
+}
+
+.doc-sign {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.doc-sign div {
+  min-height: 48px;
+  padding-top: 28px;
+  border-bottom: 1px solid #94a3b8;
+}
+
+@media (min-width: 1600px) {
+  .side-panel {
+    width: 400px;
+    min-width: 400px;
+    max-width: 400px;
+  }
+
+  .panel-inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .paper {
+    --paper-width: 700px;
+  }
+
+  .preview-area {
+    padding-top: 32px;
+  }
+}
+
+@media (max-width: 1280px) {
+  html,
+  body {
+    overflow: visible;
+  }
+
+  .app-shell {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .workspace {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .side-panel {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow-y: visible;
+    border-right: none;
+    border-bottom: 1px solid #d6dde7;
+  }
+
+  .panel-inner {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .preview-area {
+    height: auto;
+    padding: 20px 18px 40px;
+    align-items: center;
+  }
+
+  .paper {
+    --paper-width: min(92vw, 620px);
+  }
+}
+
+@media (max-width: 768px) {
+  .top-tabs,
+  .address-bar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .panel-inner {
+    padding: 18px 14px 28px;
+  }
+
+  .field,
+  .textarea-xs,
+  .textarea-sm,
+  .textarea-md,
+  .textarea-lg {
+    font-size: 16px;
+  }
+
+  .paper {
+    --paper-width: min(95vw, 560px);
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .top-tabs,
+  .address-bar,
+  .side-panel {
+    display: none !important;
+  }
+
+  .workspace,
+  .preview-area {
+    display: block;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 0;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .doc-pages {
+    display: block;
+    gap: 0;
+    width: 210mm;
+  }
+
+  .paper {
+    --paper-width: 210mm;
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .paper:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .paper-slot {
+    border-color: #dddddd;
+  }
+
+  .sq-table tr {
+    page-break-inside: avoid;
+  }
+
+  .sq-sign {
+    page-break-inside: avoid;
+  }
+}
+
+/* ================================================================
+   SQ (Penawaran Harga) — dokumen persis mengikuti layout referensi
+   ================================================================ */
+
+/* Baris input "Daftar Penawaran": Nama Barang full-width di atas,
+   lalu Qty/Sat & Harga/Disc% di bawahnya biar tetap enak dipakai di layar sempit */
+.sq-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding-right: 24px;
+}
+
+.sq-row .item-name {
+  grid-column: 1 / -1;
+}
+
+.sq-row .field {
+  height: 36px;
+  margin: 0;
+}
+
+.sq-row .row-remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Dokumen preview SQ
+   Semua ukuran pakai satuan cqw (container query width) = persentase dari
+   lebar .paper-slot. Referensi konversi: 6px lama = 1cqw (dulu dokumen
+   dirancang di atas kertas ~600px). Dengan cqw, saat kertas mengecil di HP,
+   SELURUH isi (font, padding, jarak) ikut mengecil proporsional bersama-sama —
+   jadi rasio tinggi/lebar konten tetap sama persis seperti versi desktop dan
+   tidak akan pernah terpotong oleh .paper-slot yang overflow:hidden.
+   Properti ini JUGA yang membuat sistem pagination JS valid untuk semua ukuran
+   layar/print: karena semua tinggi elemen ikut skala proporsional terhadap
+   lebar kontainer, rasio "berapa baris muat per halaman A4" tetap konsisten
+   berapa pun lebar render-nya (preview di layar kecil/besar ataupun cetak). */
+.sq-doc {
+  width: 100%;
+  height: 100%;
+  padding: 3cqw 3.667cqw 2.333cqw;
+  color: #111827;
+  background: #ffffff;
+  font-size: 1.5cqw;
+  line-height: 1.3;
+}
+
+.sq-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2cqw;
+  padding-bottom: 0.6cqw;
+  border-bottom: 0.333cqw solid #1e3a8a;
+}
+
+.sq-logo-block {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  margin-left: -20px;
+}
+
+.sq-logo-block img {
+  display: block;
+  height: 15cqw;
+  width: auto;
+  max-width: 62cqw;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.sq-company {
+  text-align: left;
+  align-self: flex-end;
+  padding-left: 40px;
+}
+
+.sq-company .name {
+  font-size: 2.5cqw;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 0.333cqw;
+}
+
+.sq-company div {
+  color: #1f2937;
+}
+
+.sq-mid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2cqw;
+  margin: 0.8cqw 0;
+}
+
+.sq-kepada .label {
+  font-weight: 800;
+  margin-bottom: 0.333cqw;
+}
+
+.sq-kepada .value {
+  font-weight: 700;
+}
+
+.sq-title-block {
+  text-align: right;
+  min-width: 31.667cqw;
+}
+
+.sq-title-block .title {
+  font-size: 2.167cqw;
+  font-weight: 900;
+  margin-bottom: 1cqw;
+  letter-spacing: 0.2px;
+}
+
+.sq-meta {
+  display: grid;
+  grid-template-columns: 9.667cqw 1cqw 1fr;
+  gap: 0.5cqw 0.667cqw;
+  text-align: left;
+  font-size: 1.5cqw;
+}
+
+.sq-meta .k {
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.sq-meta .v {
+  font-weight: 800;
+}
+
+.sq-continuation {
+  margin-bottom: 1.333cqw;
+  padding-bottom: 0.667cqw;
+  color: #64748b;
+  font-weight: 800;
+  font-size: 1.333cqw;
+  border-bottom: 0.333cqw solid #1e3a8a;
+}
+
+.sq-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8cqw 0;
+  font-size: 1.5cqw;
+}
+
+.sq-table th,
+.sq-table td {
+  border: 1px solid #cfd8e6;
+  padding: 0.833cqw;
+  vertical-align: top;
+}
+
+.sq-table th {
+  background: #eaf0f7;
+  color: #0f172a;
+  font-weight: 900;
+  text-align: center;
+}
+
+.sq-table td.num {
+  text-align: center;
+}
+
+.sq-table td.money {
+  text-align: right;
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.sq-table td.money-black {
+  text-align: right;
+}
+
+.sq-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.667cqw;
+  margin-top: 1cqw;
+}
+
+.sq-keterangan {
+  flex: 1;
+  min-width: 0;
+}
+
+.sq-keterangan .rule {
+  height: 0;
+  border-top: 1px dashed #111827;
+  margin: 0;
+}
+
+.sq-keterangan .label {
+  font-weight: 800;
+  padding: 0.5cqw 0;
+}
+
+.sq-keterangan .value {
+  min-height: 5cqw;
+  padding: 0.5cqw 0;
+  white-space: pre-wrap;
+}
+
+.sq-totals {
+  width: 35cqw;
+  flex-shrink: 0;
+}
+
+.sq-totals .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5cqw 0;
+}
+
+.sq-totals .row .val {
+  font-weight: 700;
+}
+
+.sq-totals .row.money .val {
+  color: #b91c1c;
+}
+
+.sq-totals .row.total {
+  border-top: 2px solid #111827;
+  border-bottom: 2px solid #111827;
+  margin-top: 0.667cqw;
+  padding-top: 1cqw;
+  padding-bottom: 0.667cqw;
+  font-weight: 900;
+  font-size: 1.833cqw;
+}
+
+.sq-totals .row.total .val {
+  color: #b91c1c;
+}
+
+.sq-sign {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.333cqw;
+  margin-top: 3cqw;
+}
+
+.sq-sign .col {
+  text-align: left;
+}
+
+.sq-sign .line {
+  height: 9.5cqw;
+}
+
+.sq-sign .label {
+  margin-top: 0.667cqw;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.sq-sign .tgl {
+  margin-top: 8cqw;
+  border-bottom: 1px solid #94a3b8;
+  width: 55%;
+  margin-left: 0;
+  margin-right: auto;
+  padding-top: 1.667cqw;
+}
+
+/* Fallback untuk browser lama yang belum kenal container query:
+   pakai ukuran px tetap seperti sebelumnya (tetap lebih baik daripada rusak) */
+@supports not (container-type: inline-size) {
+  .sq-doc {
+    font-size: 9px;
+    padding: 18px 22px 14px;
+  }
+  .sq-company .name {
+    font-size: 15px;
+  }
+  .sq-title-block .title {
+    font-size: 13px;
+  }
+  .sq-meta {
+    font-size: 9px;
+  }
+  .sq-table {
+    font-size: 9px;
+  }
+  .sq-totals .row.total {
+    font-size: 11px;
+  }
+}
+
+/* ================================================================
+   Modern Modal Dialog
+   ================================================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+  max-width: 420px;
+  width: 90%;
+  padding: 28px 28px 24px;
+  animation: slideUp 0.3s ease-out;
+  text-align: center;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content .modal-message {
+  color: #0f172a;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 28px;
+  font-weight: 500;
+}
+
+.modal-content .modal-button {
+  width: 100%;
+  height: 38px;
+  background: linear-gradient(135deg, #1f3f98 0%, #1a3a8a 100%);
+  color: #ffffff;
+  border: 0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(31, 63, 152, 0.3);
+}
+
+.modal-content .modal-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(31, 63, 152, 0.4);
+}
+
+.modal-content .modal-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(31, 63, 152, 0.3);
+}
